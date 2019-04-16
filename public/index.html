@@ -24,18 +24,24 @@
     <script>
 		  function calculaMensualidad()
 		  {
-
-			const Http = new XMLHttpRequest();
-			const url='/apicalcula/?monto='+document.getElementById("monto").value+'&duracion='+document.getElementById("duracion").value+'&tasa='+document.getElementById("tasa").value;
-			Http.open("GET", url);
-			Http.send();
-			Http.onreadystatechange=(e)=>{
-							var respuesta=Http.responseText.replace(/"{\\"montoPago\\":\\"/g,"");
-							respuesta=respuesta.replace(/\\"}"/g,"");
-							document.getElementById("mensualidad").value=respuesta;
-						  }
+			if (esNumerico(document.getElementById("monto").value)&&esNumerico(document.getElementById("duracion").value)&&esNumerico(document.getElementById("tasa").value))
+				{
+						const Http = new XMLHttpRequest();
+						const url='/apicalcula/?monto='+document.getElementById("monto").value+'&duracion='+document.getElementById("duracion").value+'&tasa='+document.getElementById("tasa").value;
+						Http.open("GET", url);
+						Http.send();
+						Http.onreadystatechange=(e)=>{
+										var respuesta=Http.responseText.replace(/"{\\"montoPago\\":\\"/g,"");
+										respuesta=respuesta.replace(/\\"}"/g,"");
+										document.getElementById("mensualidad").value=respuesta;
+									  }
+				}
+			  else{ alert("Los únicos valores aceptados son numéricos, favor de revisar");}
 		  }
-
+			function esNumerico(n) 
+			{
+			  return !isNaN(parseFloat(n)) && isFinite(n);
+			}
 	 </script>
 	  
       <div align="center">
