@@ -57,7 +57,7 @@ app.get('/apicalcula', function(req, res) {
     var duracion= query.duracion;
     var tasa= query.tasa;
     var options = { method: 'GET',
-      url: 'https://api.us-south.apiconnect.appdomain.cloud/pedrombaorg-thinksummit/sb/apifinanciar/calcular',
+      url: 'https://api.us-south.apiconnect.appdomain.cloud/pedrombaorg-dev/sb/financiamiento/calcular',
       qs:
        { monto: monto,
          duracion: duracion,
